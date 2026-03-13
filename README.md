@@ -1,15 +1,15 @@
 # cmdRunner
 
-[![VS Code Marketplace](https://img.shields.io/visual-studio-marketplace/v/sharf-shawon.cmdrunner-vscode?label=VS%20Code%20Marketplace)](https://marketplace.visualstudio.com/items?itemName=sharf-shawon.cmdrunner-vscode)
-[![Downloads](https://img.shields.io/visual-studio-marketplace/d/sharf-shawon.cmdrunner-vscode)](https://marketplace.visualstudio.com/items?itemName=sharf-shawon.cmdrunner-vscode)
+[![VS Code Marketplace](https://img.shields.io/visual-studio-marketplace/v/ms544s.cmdrunner-vscode?label=VS%20Code%20Marketplace)](https://marketplace.visualstudio.com/items?itemName=ms544s.cmdrunner-vscode)
+[![Downloads](https://img.shields.io/visual-studio-marketplace/d/ms544s.cmdrunner-vscode)](https://marketplace.visualstudio.com/items?itemName=ms544s.cmdrunner-vscode)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![CI](https://github.com/sharf-shawon/cmdrunner-vscode/actions/workflows/ci.yml/badge.svg)](https://github.com/sharf-shawon/cmdrunner-vscode/actions/workflows/ci.yml)
+[![CI](https://github.com/ms544s/cmdrunner-vscode/actions/workflows/ci.yml/badge.svg)](https://github.com/ms544s/cmdrunner-vscode/actions/workflows/ci.yml)
 
 A VS Code extension that allows developers to configure and run terminal commands directly from clickable buttons in the status bar. **Secure**, **team-friendly**, and **AI-agent-ready**.
 
 ## Quick Start
 
-1. Install the extension from the [VS Code Marketplace](https://marketplace.visualstudio.com/items?itemName=sharf-shawon.cmdrunner-vscode)
+1. Install the extension from the [VS Code Marketplace](https://marketplace.visualstudio.com/items?itemName=ms544s.cmdrunner-vscode)
 2. Open a workspace and run **cmdRunner: Open Walkthrough** (`Ctrl+Shift+P`)
 3. A `.cmdrunner` template will be created — edit it with your commands
 4. Click the buttons in the status bar to run commands!
@@ -213,7 +213,7 @@ See [docs/contributing.md](docs/contributing.md) for the full guide.
 ### Quick Start for Contributors
 
 ```bash
-git clone https://github.com/sharf-shawon/cmdrunner-vscode
+git clone https://github.com/ms544s/cmdrunner-vscode
 cd cmdrunner-vscode
 npm install
 npm run compile
