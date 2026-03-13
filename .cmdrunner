@@ -12,7 +12,7 @@
     {
       "id": "test",
       "label": "Test",
-      "command": "npm test",
+      "command": "if command -v xvfb-run >/dev/null 2>&1; then xvfb-run -a npm test; else npm test; fi",
       "icon": "beaker",
       "tooltip": "Run test suite",
       "cooldownMs": 5000

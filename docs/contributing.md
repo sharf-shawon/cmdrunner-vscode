@@ -42,6 +42,15 @@ npm test
 
 Tests run in the VS Code Extension Test environment via `@vscode/test-electron`.
 
+On Linux containers and GitHub Codespaces, VS Code's Electron test runner also needs system GUI libraries and a virtual display. If tests fail with missing shared libraries such as `libatk-1.0.so.0`, install the dependencies and run tests through Xvfb:
+
+```bash
+sudo mv /etc/apt/sources.list.d/yarn.list /etc/apt/sources.list.d/yarn.list.disabled  # only if apt update is blocked by the Yarn repo
+sudo apt-get update
+sudo apt-get install -y xvfb libatk1.0-0 libgtk-3-0 libnss3 libxss1 libasound2t64 libgbm1 libxshmfence1 libx11-xcb1 libxcb-dri3-0 libdrm2 libxdamage1 libxrandr2 libxkbcommon0 libpango-1.0-0 libcairo2 libatspi2.0-0 libxcomposite1 libxcursor1 libxi6 libxtst6
+xvfb-run -a npm test
+```
+
 ### Coverage
 
 ```bash

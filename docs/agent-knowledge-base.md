@@ -24,3 +24,5 @@ Entries follow the format: `[YYYY-MM-DD][category] Description`.
 [2024-01-15][profiles] Profile env vars override globalEnv. `getMergedEnv()` returns `{...globalEnv, ...profileEnv}`. Profile switching logs to audit and shows VS Code info message.
 
 [2024-01-15][conventions] Conventional Commits required for all commits. Allowed prefixes: feat, fix, docs, chore, test, refactor, perf, ci, build, style.
+
+[2026-03-13][testing] In Linux containers and Codespaces, `npm test` for `@vscode/test-electron` needs Electron shared libraries plus `xvfb`; missing `libatk-1.0.so.0` indicates the container is missing GUI runtime packages rather than a test code failure.
