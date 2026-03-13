@@ -1,0 +1,32 @@
+name: Documentation Update
+description: Request a correction or improvement to the documentation
+title: "[Docs]: "
+labels: ["documentation"]
+body:
+  - type: input
+    id: doc-file
+    attributes:
+      label: Documentation File
+      description: Which documentation file needs updating?
+      placeholder: "e.g. docs/configuration-reference.md"
+    validations:
+      required: true
+  - type: textarea
+    id: issue
+    attributes:
+      label: What is wrong or missing?
+      description: Describe the documentation issue.
+    validations:
+      required: true
+  - type: textarea
+    id: suggestion
+    attributes:
+      label: Suggested Fix
+      description: What should the documentation say instead?
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: Checklist
+      options:
+        - label: I have verified the current documentation is incorrect or incomplete
+          required: true

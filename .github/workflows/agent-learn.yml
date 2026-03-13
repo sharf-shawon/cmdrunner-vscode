@@ -1,0 +1,33 @@
+name: Agent Knowledge Base Update
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'src/**'
+      - 'docs/**'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  check-kb-sync:
+    name: Check Knowledge Base is Updated
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+
+      - name: Check src/ changes have docs/ updates
+        run: |
+          SRC_CHANGED=$(git diff --name-only HEAD~1 HEAD -- src/ | wc -l)
+          DOCS_CHANGED=$(git diff --name-only HEAD~1 HEAD -- docs/ | wc -l)
+          if [ "$SRC_CHANGED" -gt 0 ] && [ "$DOCS_CHANGED" -eq 0 ]; then
+            echo "::warning::Source files changed but no documentation was updated. Please update docs/ when modifying src/."
+          fi
+          echo "Source files changed: $SRC_CHANGED"
+          echo "Documentation files changed: $DOCS_CHANGED"

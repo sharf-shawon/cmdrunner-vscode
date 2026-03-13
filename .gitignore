@@ -1,0 +1,10 @@
+node_modules/
+out/
+.vscode-test/
+*.vsix
+.cmdrunner.local
+coverage/
+.nyc_output/
+dist/
+audit-logs/
+~/.cmdrunner/

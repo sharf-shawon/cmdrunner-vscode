@@ -1,0 +1,160 @@
+{
+  "name": "cmdrunner-vscode",
+  "displayName": "cmdRunner",
+  "description": "Run terminal commands from clickable status bar buttons. Secure, team-friendly, AI-agent-ready.",
+  "version": "0.1.0",
+  "publisher": "sharf-shawon",
+  "license": "MIT",
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": [
+    "Other",
+    "Debuggers",
+    "Testing"
+  ],
+  "keywords": [
+    "terminal",
+    "commands",
+    "status bar",
+    "runner",
+    "automation"
+  ],
+  "activationEvents": [
+    "workspaceContains:.cmdrunner"
+  ],
+  "main": "./out/extension.js",
+  "icon": "images/icon.png",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sharf-shawon/cmdrunner-vscode"
+  },
+  "bugs": {
+    "url": "https://github.com/sharf-shawon/cmdrunner-vscode/issues"
+  },
+  "homepage": "https://github.com/sharf-shawon/cmdrunner-vscode#readme",
+  "contributes": {
+    "commands": [
+      {
+        "command": "cmdrunner.reload",
+        "title": "cmdRunner: Reload Configuration"
+      },
+      {
+        "command": "cmdrunner.switchProfile",
+        "title": "cmdRunner: Switch Profile"
+      },
+      {
+        "command": "cmdrunner.showAuditLog",
+        "title": "cmdRunner: Show Audit Log"
+      },
+      {
+        "command": "cmdrunner.openWalkthrough",
+        "title": "cmdRunner: Open Walkthrough"
+      }
+    ],
+    "configuration": {
+      "title": "cmdRunner",
+      "properties": {
+        "cmdrunner.configPath": {
+          "type": "string",
+          "default": ".cmdrunner",
+          "description": "Path to the cmdRunner configuration file relative to the workspace root."
+        },
+        "cmdrunner.defaultProfile": {
+          "type": "string",
+          "default": "default",
+          "description": "The default profile to activate on workspace open."
+        },
+        "cmdrunner.showInStatusBar": {
+          "type": "boolean",
+          "default": true,
+          "description": "Show cmdRunner buttons in the status bar."
+        }
+      }
+    },
+    "jsonValidation": [
+      {
+        "fileMatch": ".cmdrunner",
+        "url": "./.vscode/cmdrunner.schema.json"
+      }
+    ],
+    "walkthroughs": [
+      {
+        "id": "cmdrunner.walkthrough",
+        "title": "Get started with cmdRunner",
+        "description": "Configure and run terminal commands from your status bar.",
+        "steps": [
+          {
+            "id": "cmdrunner.walkthrough.createConfig",
+            "title": "Create a .cmdrunner config file",
+            "description": "Add a .cmdrunner file to your workspace root to define your commands.\n[Create .cmdrunner](command:cmdrunner.openWalkthrough)",
+            "completionEvents": [
+              "onCommand:cmdrunner.reload"
+            ],
+            "media": {
+              "markdown": "docs/walkthrough/create-config.md"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "pretest": "npm run compile",
+    "test": "node ./out/test/runTests.js",
+    "lint": "eslint src --ext ts",
+    "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
+    "format:check": "prettier --check \"src/**/*.ts\" \"test/**/*.ts\"",
+    "coverage": "c8 npm test",
+    "prepare": "husky install || true"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^18.4.3",
+    "@commitlint/config-conventional": "^18.4.3",
+    "@types/glob": "^8.1.0",
+    "@types/mocha": "^10.0.6",
+    "@types/node": "^20.10.6",
+    "@types/vscode": "^1.85.0",
+    "@typescript-eslint/eslint-plugin": "^6.17.0",
+    "@typescript-eslint/parser": "^6.17.0",
+    "@vscode/test-electron": "^2.3.8",
+    "c8": "^9.0.0",
+    "eslint": "^8.56.0",
+    "husky": "^8.0.3",
+    "lint-staged": "^15.2.0",
+    "mocha": "^10.2.0",
+    "prettier": "^3.1.1",
+    "typescript": "^5.3.3"
+  },
+  "dependencies": {
+    "@vscode/l10n": "^0.0.18",
+    "zod": "^3.22.4"
+  },
+  "lint-staged": {
+    "*.ts": [
+      "eslint --fix",
+      "prettier --write"
+    ]
+  },
+  "c8": {
+    "reporter": [
+      "text",
+      "lcov",
+      "html"
+    ],
+    "exclude": [
+      "out/test/**",
+      "node_modules/**"
+    ],
+    "all": true,
+    "src": "./out",
+    "check-coverage": true,
+    "lines": 80,
+    "functions": 80,
+    "branches": 80,
+    "statements": 80
+  }
+}
