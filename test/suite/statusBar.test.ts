@@ -45,7 +45,12 @@ suite('StatusBarManager', () => {
     let manager: StatusBarManager;
 
     setup(() => {
-      const cmd = makeCommand({ id: 'build', label: 'Build', command: 'npm run build', cooldownMs: 100 });
+      const cmd = makeCommand({
+        id: 'build',
+        label: 'Build',
+        command: 'npm run build',
+        cooldownMs: 100,
+      });
       const config = makeConfig({ commands: [cmd] });
       manager = new StatusBarManager(config);
       // refresh() calls vscode.window.createStatusBarItem — available in VS Code test env

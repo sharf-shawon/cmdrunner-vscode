@@ -14,20 +14,18 @@ import type { AuditLogger } from './auditLog';
 export class StartupRunner {
   private readonly config: CmdRunnerConfig;
   private readonly terminalRunner: TerminalRunner;
+  private readonly auditLogger: AuditLogger;
 
   /**
    * Creates a StartupRunner with the given dependencies.
    * @param config - The validated cmdRunner configuration.
    * @param terminalRunner - The terminal runner for executing commands.
-   * @param _auditLogger - The audit logger (reserved for future startup event logging).
+   * @param auditLogger - The audit logger for startup events.
    */
-  constructor(
-    config: CmdRunnerConfig,
-    terminalRunner: TerminalRunner,
-    _auditLogger: AuditLogger,
-  ) {
+  constructor(config: CmdRunnerConfig, terminalRunner: TerminalRunner, auditLogger: AuditLogger) {
     this.config = config;
     this.terminalRunner = terminalRunner;
+    this.auditLogger = auditLogger;
   }
 
   /**
@@ -42,9 +40,7 @@ export class StartupRunner {
     }
 
     const commandIds = startupConfig.commands;
-    const commandMap = new Map<string, Command>(
-      this.config.commands.map((cmd) => [cmd.id, cmd]),
-    );
+    const commandMap = new Map<string, Command>(this.config.commands.map((cmd) => [cmd.id, cmd]));
 
     const toRun = commandIds
       .map((id) => commandMap.get(id))
@@ -53,6 +49,10 @@ export class StartupRunner {
     if (toRun.length === 0) {
       return;
     }
+
+    this.auditLogger.log('command_executed', {
+      details: `Startup: running ${toRun.length} command(s) (parallel=${String(startupConfig.parallel)})`,
+    });
 
     if (startupConfig.delayMs > 0) {
       await new Promise<void>((resolve) => setTimeout(resolve, startupConfig.delayMs));

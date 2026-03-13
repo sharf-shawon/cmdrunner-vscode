@@ -105,8 +105,8 @@ export class CmdRunnerTaskProvider implements vscode.TaskProvider {
    * @returns A VS Code Task for the command.
    */
   private buildTask(cmd: Command): vscode.Task {
-    const execution = new vscode.CustomExecution(
-      () => Promise.resolve(new CmdRunnerPseudoTerminal(this.resolver.resolve(cmd.command), cmd.label)),
+    const execution = new vscode.CustomExecution(() =>
+      Promise.resolve(new CmdRunnerPseudoTerminal(this.resolver.resolve(cmd.command), cmd.label)),
     );
     const task = new vscode.Task(
       { type: TASK_TYPE, id: cmd.id },

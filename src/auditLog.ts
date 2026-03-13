@@ -30,12 +30,8 @@ export class AuditLogger {
   constructor(config?: AuditConfig) {
     this.enabled = config?.enabled ?? true;
     this.maxSizeBytes = config?.maxSizeBytes ?? 10485760;
-    const logDir = config?.logPath
-      ? path.dirname(config.logPath)
-      : DEFAULT_AUDIT_DIR;
-    const logFile = config?.logPath
-      ? path.basename(config.logPath)
-      : DEFAULT_AUDIT_FILE;
+    const logDir = config?.logPath ? path.dirname(config.logPath) : DEFAULT_AUDIT_DIR;
+    const logFile = config?.logPath ? path.basename(config.logPath) : DEFAULT_AUDIT_FILE;
     this.logPath = path.join(logDir, logFile);
     if (this.enabled) {
       this.ensureLogDir(logDir);

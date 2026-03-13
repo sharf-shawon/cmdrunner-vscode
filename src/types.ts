@@ -148,7 +148,13 @@ export interface AuditEntry {
   /** ISO 8601 timestamp */
   timestamp: string;
   /** Action type */
-  action: 'command_executed' | 'config_loaded' | 'profile_switched' | 'extension_activated' | 'extension_deactivated' | 'security_violation';
+  action:
+    | 'command_executed'
+    | 'config_loaded'
+    | 'profile_switched'
+    | 'extension_activated'
+    | 'extension_deactivated'
+    | 'security_violation';
   /** Command id if applicable */
   commandId?: string;
   /** Profile name if applicable */
