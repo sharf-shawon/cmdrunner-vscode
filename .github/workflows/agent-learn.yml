@@ -8,6 +8,9 @@ on:
       - 'docs/**'
   workflow_dispatch:
 
+permissions:
+  contents: read
+
 jobs:
   check-kb-sync:
     name: Check Knowledge Base is Updated
