@@ -1,0 +1,244 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://github.com/sharf-shawon/cmdrunner-vscode/blob/main/.vscode/cmdrunner.schema.json",
+  "title": "cmdRunner Configuration",
+  "description": "Configuration file for the cmdRunner VS Code extension",
+  "type": "object",
+  "properties": {
+    "version": {
+      "type": "string",
+      "description": "Schema version",
+      "default": "1"
+    },
+    "commands": {
+      "type": "array",
+      "description": "Array of command button definitions",
+      "items": {
+        "$ref": "#/definitions/Command"
+      },
+      "default": []
+    },
+    "profiles": {
+      "type": "object",
+      "description": "Named environment profiles",
+      "additionalProperties": {
+        "$ref": "#/definitions/Profile"
+      },
+      "default": {}
+    },
+    "activeProfile": {
+      "type": "string",
+      "description": "Profile to activate on workspace open",
+      "default": "default"
+    },
+    "startup": {
+      "$ref": "#/definitions/StartupConfig"
+    },
+    "security": {
+      "$ref": "#/definitions/SecurityConfig"
+    },
+    "audit": {
+      "$ref": "#/definitions/AuditConfig"
+    },
+    "display": {
+      "$ref": "#/definitions/DisplayConfig"
+    },
+    "globalEnv": {
+      "type": "object",
+      "description": "Global environment variables",
+      "additionalProperties": {
+        "type": "string"
+      },
+      "default": {}
+    }
+  },
+  "additionalProperties": false,
+  "definitions": {
+    "Command": {
+      "type": "object",
+      "required": ["id", "label", "command"],
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Unique identifier for this command"
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Label shown on the status bar button"
+        },
+        "command": {
+          "type": "string",
+          "minLength": 1,
+          "description": "The shell command to execute"
+        },
+        "tooltip": {
+          "type": "string",
+          "description": "Optional tooltip text"
+        },
+        "icon": {
+          "type": "string",
+          "description": "VS Code codicon name (e.g. 'play', 'terminal')"
+        },
+        "color": {
+          "type": "string",
+          "description": "Color for the status bar item"
+        },
+        "cooldownMs": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Cooldown in milliseconds between executions",
+          "default": 0
+        },
+        "profiles": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Show only in these profiles (all if omitted)"
+        },
+        "runOnStartup": {
+          "type": "boolean",
+          "description": "Whether this command runs at startup",
+          "default": false
+        },
+        "terminalProfile": {
+          "type": "string",
+          "description": "Terminal shell profile to use"
+        },
+        "reuseTerminal": {
+          "type": "boolean",
+          "description": "Whether to reuse an existing terminal by name",
+          "default": true
+        },
+        "alignment": {
+          "type": "string",
+          "enum": ["left", "right"],
+          "description": "Status bar alignment",
+          "default": "left"
+        },
+        "priority": {
+          "type": "integer",
+          "description": "Priority for ordering in the status bar"
+        }
+      },
+      "additionalProperties": false
+    },
+    "Profile": {
+      "type": "object",
+      "required": ["name"],
+      "properties": {
+        "name": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Profile display name"
+        },
+        "env": {
+          "type": "object",
+          "additionalProperties": { "type": "string" },
+          "description": "Environment variables for this profile",
+          "default": {}
+        },
+        "description": {
+          "type": "string",
+          "description": "Optional profile description"
+        }
+      },
+      "additionalProperties": false
+    },
+    "StartupConfig": {
+      "type": "object",
+      "properties": {
+        "commands": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Command IDs to run at startup",
+          "default": []
+        },
+        "parallel": {
+          "type": "boolean",
+          "description": "Run startup commands in parallel",
+          "default": false
+        },
+        "delayMs": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Delay in milliseconds before running startup commands",
+          "default": 0
+        }
+      },
+      "additionalProperties": false
+    },
+    "SecurityConfig": {
+      "type": "object",
+      "properties": {
+        "blockedPatterns": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Regex patterns - matching commands are blocked",
+          "default": []
+        },
+        "requireWorkspaceTrust": {
+          "type": "boolean",
+          "description": "Require VS Code workspace trust before running commands",
+          "default": true
+        },
+        "checksums": {
+          "type": "object",
+          "additionalProperties": { "type": "string" },
+          "description": "SHA-256 checksums for config files",
+          "default": {}
+        },
+        "maskSecrets": {
+          "type": "boolean",
+          "description": "Mask secrets in audit logs",
+          "default": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "AuditConfig": {
+      "type": "object",
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "description": "Enable audit logging",
+          "default": true
+        },
+        "logPath": {
+          "type": "string",
+          "description": "Custom path for the audit log file"
+        },
+        "maxSizeBytes": {
+          "type": "integer",
+          "minimum": 1,
+          "description": "Maximum log file size in bytes before rotation",
+          "default": 10485760
+        }
+      },
+      "additionalProperties": false
+    },
+    "DisplayConfig": {
+      "type": "object",
+      "properties": {
+        "mode": {
+          "type": "string",
+          "enum": ["icon", "text", "both"],
+          "description": "Display mode for status bar buttons",
+          "default": "both"
+        },
+        "showCount": {
+          "type": "boolean",
+          "description": "Show command count badge",
+          "default": false
+        },
+        "statusBarAlignment": {
+          "type": "string",
+          "enum": ["left", "right"],
+          "description": "Overall status bar alignment",
+          "default": "left"
+        }
+      },
+      "additionalProperties": false
+    }
+  }
+}

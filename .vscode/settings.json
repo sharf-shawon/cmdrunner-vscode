@@ -1,0 +1,17 @@
+{
+  "editor.formatOnSave": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "explicit"
+  },
+  "typescript.tsdk": "node_modules/typescript/lib",
+  "files.associations": {
+    ".cmdrunner": "json"
+  },
+  "json.schemas": [
+    {
+      "fileMatch": [".cmdrunner"],
+      "url": "./.vscode/cmdrunner.schema.json"
+    }
+  ]
+}

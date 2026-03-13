@@ -1,0 +1,42 @@
+{
+  "version": "1",
+  "commands": [
+    {
+      "id": "build",
+      "label": "Build",
+      "command": "npm run compile",
+      "icon": "tools",
+      "tooltip": "Compile TypeScript",
+      "cooldownMs": 2000
+    },
+    {
+      "id": "test",
+      "label": "Test",
+      "command": "npm test",
+      "icon": "beaker",
+      "tooltip": "Run test suite",
+      "cooldownMs": 5000
+    },
+    {
+      "id": "lint",
+      "label": "Lint",
+      "command": "npm run lint",
+      "icon": "check",
+      "tooltip": "Run ESLint",
+      "cooldownMs": 2000
+    },
+    {
+      "id": "watch",
+      "label": "Watch",
+      "command": "npm run watch",
+      "icon": "eye",
+      "tooltip": "Start TypeScript watch mode",
+      "reuseTerminal": true
+    }
+  ],
+  "security": {
+    "requireWorkspaceTrust": true,
+    "maskSecrets": true,
+    "blockedPatterns": []
+  }
+}
