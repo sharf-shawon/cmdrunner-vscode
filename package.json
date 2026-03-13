@@ -3,7 +3,7 @@
   "displayName": "cmdRunner",
   "description": "Run terminal commands from clickable status bar buttons. Secure, team-friendly, AI-agent-ready.",
   "version": "0.1.0",
-  "publisher": "sharf-shawon",
+  "publisher": "ms544s",
   "license": "MIT",
   "engines": {
     "vscode": "^1.85.0"

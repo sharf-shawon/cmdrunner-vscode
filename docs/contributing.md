@@ -16,6 +16,24 @@ cd cmdrunner-vscode
 npm install
 ```
 
+### Dev Container
+
+This repository includes a dev container for local Docker-based development and GitHub Codespaces. It installs Node.js, the VS Code extension development toolchain, and the Linux GUI libraries needed by `@vscode/test-electron`.
+
+To use it:
+
+1. Open the repository in VS Code.
+2. Run `Dev Containers: Reopen in Container`.
+3. Wait for the container build and `npm install` post-create step to finish.
+
+After the container is ready, the usual commands work without extra system setup:
+
+```bash
+npm run compile
+npm run lint
+xvfb-run -a npm test
+```
+
 ### Build
 
 ```bash
@@ -42,7 +60,9 @@ npm test
 
 Tests run in the VS Code Extension Test environment via `@vscode/test-electron`.
 
-On Linux containers and GitHub Codespaces, VS Code's Electron test runner also needs system GUI libraries and a virtual display. If tests fail with missing shared libraries such as `libatk-1.0.so.0`, install the dependencies and run tests through Xvfb:
+The included dev container already installs the Linux GUI libraries and Xvfb required by the Electron test runner.
+
+If you are not using the dev container and tests fail with missing shared libraries such as `libatk-1.0.so.0`, install the dependencies and run tests through Xvfb:
 
 ```bash
 sudo mv /etc/apt/sources.list.d/yarn.list /etc/apt/sources.list.d/yarn.list.disabled  # only if apt update is blocked by the Yarn repo

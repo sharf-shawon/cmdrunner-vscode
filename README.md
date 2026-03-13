@@ -39,9 +39,7 @@ See [docs/configuration-reference.md](docs/configuration-reference.md) for the c
 ```json
 {
   "version": "1",
-  "commands": [
-    { "id": "build", "label": "Build", "command": "npm run build" }
-  ]
+  "commands": [{ "id": "build", "label": "Build", "command": "npm run build" }]
 }
 ```
 
@@ -113,11 +111,11 @@ Switch between environments with a single command (**cmdRunner: Switch Profile**
 
 Control how buttons appear in the status bar:
 
-| Mode | Example |
-|------|---------|
+| Mode               | Example          |
+| ------------------ | ---------------- |
 | `"both"` (default) | `$(tools) Build` |
-| `"icon"` | `$(tools)` |
-| `"text"` | `Build` |
+| `"icon"`           | `$(tools)`       |
+| `"text"`           | `Build`          |
 
 ```json
 {
@@ -148,22 +146,23 @@ Use a specific shell for a command:
 
 Variables are resolved at runtime:
 
-| Variable | Description |
-|----------|-------------|
-| `${workspaceFolder}` | Absolute workspace root path |
-| `${workspaceFolderBasename}` | Workspace folder name |
-| `${file}` | Currently open file path |
-| `${fileBasename}` | Open file name |
-| `${fileDirname}` | Directory of open file |
-| `${fileExtname}` | Extension of open file |
-| `${gitBranch}` | Current git branch |
-| `${env:VAR}` | Environment variable |
-| `${config:section.key}` | VS Code setting |
-| `${date}` | Current date (YYYY-MM-DD) |
-| `${time}` | Current time (HH:MM:SS) |
-| `${datetime}` | Current datetime (ISO 8601) |
+| Variable                     | Description                  |
+| ---------------------------- | ---------------------------- |
+| `${workspaceFolder}`         | Absolute workspace root path |
+| `${workspaceFolderBasename}` | Workspace folder name        |
+| `${file}`                    | Currently open file path     |
+| `${fileBasename}`            | Open file name               |
+| `${fileDirname}`             | Directory of open file       |
+| `${fileExtname}`             | Extension of open file       |
+| `${gitBranch}`               | Current git branch           |
+| `${env:VAR}`                 | Environment variable         |
+| `${config:section.key}`      | VS Code setting              |
+| `${date}`                    | Current date (YYYY-MM-DD)    |
+| `${time}`                    | Current time (HH:MM:SS)      |
+| `${datetime}`                | Current datetime (ISO 8601)  |
 
 Example:
+
 ```json
 { "command": "echo Building ${workspaceFolderBasename} on branch ${gitBranch}" }
 ```
@@ -201,6 +200,7 @@ This project is AI-agent-ready. Before working on the codebase:
 4. Review your role in [`.agents.md`](.agents.md)
 
 **Key Agent Rules**:
+
 - Never use `child_process` — only `terminal.sendText()`
 - Zero `any` TypeScript types
 - Update `docs/` when changing `src/`
@@ -219,6 +219,8 @@ npm install
 npm run compile
 npm test
 ```
+
+If you are developing in Docker or GitHub Codespaces, this repository also includes a ready-to-use dev container in `.devcontainer/` with the Electron test dependencies preinstalled. Open the repo in VS Code and run `Dev Containers: Reopen in Container`.
 
 All commits must follow [Conventional Commits](https://www.conventionalcommits.org/) format.
 
