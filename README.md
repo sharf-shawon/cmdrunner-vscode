@@ -3,7 +3,7 @@
 [![VS Code Marketplace](https://img.shields.io/visual-studio-marketplace/v/ms544s.cmdrunner-vscode?label=VS%20Code%20Marketplace)](https://marketplace.visualstudio.com/items?itemName=ms544s.cmdrunner-vscode)
 [![Downloads](https://img.shields.io/visual-studio-marketplace/d/ms544s.cmdrunner-vscode)](https://marketplace.visualstudio.com/items?itemName=ms544s.cmdrunner-vscode)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![CI](https://github.com/ms544s/cmdrunner-vscode/actions/workflows/ci.yml/badge.svg)](https://github.com/ms544s/cmdrunner-vscode/actions/workflows/ci.yml)
+[![CI](https://github.com/sharf-shawon/cmdrunner-vscode/actions/workflows/ci.yml/badge.svg)](https://github.com/sharf-shawon/cmdrunner-vscode/actions/workflows/ci.yml)
 
 A VS Code extension that allows developers to configure and run terminal commands directly from clickable buttons in the status bar. **Secure**, **team-friendly**, and **AI-agent-ready**.
 
